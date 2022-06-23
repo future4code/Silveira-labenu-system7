@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import {connection} from "../../data/connection"
+import connection from "../../data/connection"
 
 export const mudarDocenteTurma = async (req: Request, res: Response): Promise <void> =>{
 
@@ -17,7 +17,7 @@ export const mudarDocenteTurma = async (req: Request, res: Response): Promise <v
     .update({
         turma_id: turma_id
     })
-    .whre({
+    .where({
         id: docente_id
     })
 
