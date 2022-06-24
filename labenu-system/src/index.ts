@@ -21,6 +21,12 @@ app.put("/turma", mudarModulo)
 
 // Docentes
 
-
+app.get("/Docente", buscarDocentes)
+app.post("/Docente", criarDocente)
+app.put("/Docente", mudarDocenteTurma)
 
 //Estudante
+
+app.get("/Estudante", buscarEstudantes)
+app.post("/Estudante", criarEstudante)
+app.put("/Estudante", mudarEstudanteTurma)
