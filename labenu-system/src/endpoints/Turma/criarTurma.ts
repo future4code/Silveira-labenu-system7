@@ -1,35 +1,35 @@
-import {Request, Response} from "express"
-import {connection} from "../../data/connection"
+import { Request, Response } from "express"
+import connection from "../../data/connection"
 
-export  const criarTurma = async (req: Request, res: Response): Promise <void> =>{
+export const criarTurma = async (req: Request, res: Response): Promise<void> => {
     let errorCode = 400
 
-    try{
+    try {
         const id = Date.now().toString()
-        const {nome, modulo} = req.body
+        const { nome, modulo } = req.body
 
-        if(!nome || !modulo){
+        if (!nome || !modulo) {
             errorCode = 422
-            throw new Error ("Todos os campos são obrigatórios")
-        }
-        
-
-        if(!nome){
-            errorCode = 422
-            throw new Error ("Nome da turma é obrigatório")
+            throw new Error("Todos os campos são obrigatórios")
         }
 
-        if (modulo !=0){
+
+        if (!nome) {
             errorCode = 422
-            throw new Error ("O módulo inicial")
+            throw new Error("Nome da turma é obrigatório")
         }
 
-        await connection ("Turma")
-          .insert({id, nome, modulo})
+        if (modulo != 0) {
+            errorCode = 422
+            throw new Error("O módulo inicial")
+        }
 
-          res.status(201).send({message:"Turma criada"})
+        await connection("Turma")
+            .insert({ id, nome, modulo })
 
-    } catch (error:any){
-        res.send({message: error.message || error.sqlMessage})
+        res.status(201).send({ message: "Turma criada" })
+
+    } catch (error: any) {
+        res.send({ message: error.message || error.sqlMessage })
     }
 }

@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import {connection} from "../../data/connection"
+import connection from "../../data/connection"
 
 export const buscarDocentes = async (req: Request, res: Response): Promise <void> =>{
     try {
